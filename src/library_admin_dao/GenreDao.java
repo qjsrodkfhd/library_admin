@@ -3,8 +3,12 @@ package library_admin_dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import library_admin_controller.Controllers;
 import library_admin_domain.Genre;
+import library_admin_domain.GenreMgm;
+import library_admin_domain.Login;
 
 public class GenreDao {
 
@@ -67,7 +71,7 @@ public class GenreDao {
 
 			if(success){
 
-				//또한 추가한 장르는 장르관리DB인 genreMgm디비에도 들어간다.
+				//또한 추가한 장르는 장르관리DB인 GenreMgm디비에도 들어간다.
 				sql = "insert into GenreMgm values(? , ? , ?)";
 				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 				pstmt.setInt(1, genre.getGenreMgm());
@@ -87,7 +91,58 @@ public class GenreDao {
 		return success2;
 	}
 
+	//장르 관리 리스트
+	public ArrayList<GenreMgm> genreMgmList(){
+		
+		ArrayList<GenreMgm> genreMgmList = new ArrayList<GenreMgm>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int genreMgm = 0;
+		String genreCode = null;
+		Login login = Controllers.getLoginControlles().requestLoginInfo();
+		String adminId = login.getLogin_Id();
+		
+		try{
+			sql = "select GenreMgmNumber from GenreMgm";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				
+				genreMgm = rs.getInt("GenreMgmNumber");
+				
+			}
+			
+			sql = "select GenreCode from genre";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				
+				genreCode = rs.getString("GenreCode");
+				
+			}
+			
+			while(rs.next()){
+				
+				GenreMgm genreMgmView = new GenreMgm();
+				genreMgmView.setGenreMgmNumber(genreMgm);
+				genreMgmView.setGenreCode(genreCode);
+				genreMgmView.setAdminId(adminId);
+				genreMgmList.add(genreMgmView);
+			
+			}
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		
+		return genreMgmList;
+	}
 	//장르 리스트
 	//장르 수정
+	
 
 }
