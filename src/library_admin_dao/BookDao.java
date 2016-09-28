@@ -14,10 +14,10 @@ import library_admin_domain.BookLoan;
 
 
 public class BookDao {
-
+	//책 찾기
 	public Book searchBook(String searchBookName) {
 
-		//		boolean success = false;
+		//boolean success = false;
 		Book searchedBookName = null;
 
 		PreparedStatement pstmt = null;
@@ -46,7 +46,7 @@ public class BookDao {
 
 		return searchedBookName;
 	}
-
+	//책 대출
 	public boolean LoanBook(BookLoan bookLoanInfo) {
 		int nextLoanNumber = 0;
 		Statement stmt = null;

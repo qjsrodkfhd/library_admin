@@ -43,6 +43,7 @@ public class GenreMainPage {
 			break;
 		case 4:
 			System.out.println("장르 관리 테이블 페이지 입니다.");
+			Controllers.getGenreController().requestGenreMgmList();
 			break;
 		case 5:
 			System.out.println("메인페이지 입니다.");
