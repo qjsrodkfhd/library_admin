@@ -16,10 +16,6 @@ public class GenreDao {
 		ResultSet rs = null;
 		String sql = null;
 		
-		try{
-			
-			
-		}
 		//장르를 추가한다.
 		//추가한 장르는 genre디비에 들어간다.
 		//또한 추가한 장르는 장르관리DB인 genreMgm디비에도 들어간다.
