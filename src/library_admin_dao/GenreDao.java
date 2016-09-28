@@ -19,14 +19,6 @@ public class GenreDao {
 		int genreMgmNumber = 0;
 		int result = 0;
 		String sql = null;
-<<<<<<< HEAD
-		
-		//장르를 추가한다.
-		//추가한 장르는 genre디비에 들어간다.
-		//또한 추가한 장르는 장르관리DB인 genreMgm디비에도 들어간다.
-		
-		return success;
-=======
 
 		boolean findLogin = Controllers.getLoginControlles().requestLoginCheck();
 
@@ -93,7 +85,6 @@ public class GenreDao {
 		}
 
 		return success2;
->>>>>>> origin/master
 	}
 
 	//장르 리스트
