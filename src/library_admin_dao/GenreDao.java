@@ -104,6 +104,7 @@ public class GenreDao {
 		String adminId = login.getLogin_Id();
 		
 		try{
+			sql = "select GENREMGM.GENREMGMNUMBER, temp.genrecode, ADMIN.adminId FROM (select genrecode from genre group by GENRECODE) temp, GENREMGM, ADMIN WHERE GENREMGM.ADMINID = ADMIN.ADMINID and GENREMGM.GENRECODE = temp.genrecode";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
