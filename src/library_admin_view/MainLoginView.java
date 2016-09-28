@@ -21,9 +21,9 @@ public class MainLoginView {
 			boolean success = Controllers.getLoginControlles().requestLoginCheck();
 
 			if(!success){
-				System.out.print("[1. 도서대출, 2. 도서반납, 3. 로그인, 4. 관리자 가입 , 5. 도서반납예정날짜 테스트, 6. 대출카드생성, 0. 프로그램 종료] : ");
+				System.out.print("[1. 도서대출, 2. 도서반납, 3. 로그인, 4. 관리자 가입 , 5. 도서반납예정날짜 테스트, 6. 대출카드생성, 7. 장르관리 , 0. 프로그램 종료] : ");
 			}else{
-				System.out.print("[1. 도서대출, 2. 도서반납, 3. 로그아웃 , 4. 관리자 탈퇴 , 5. 도서반납예정날짜 테스트,, 6. 대출카드생성,  0. 프로그램 종료] : ");
+				System.out.print("[1. 도서대출, 2. 도서반납, 3. 로그아웃 , 4. 관리자 탈퇴 , 5. 도서반납예정날짜 테스트, 6. 대출카드생성, 7. 장르관리 , 0. 프로그램 종료] : ");
 			}
 
 
@@ -56,6 +56,10 @@ public class MainLoginView {
 			case 6:
 				System.out.println("대출카드");
 				Controllers.getLibCardController().requestRegisterLibCard();
+				System.exit(0);
+			case 7:
+				System.out.println("장르관리");
+				Controllers.getGenreController().requestGenreMgm();
 				System.exit(0);
 			case 0:
 				System.out.println("프로그램 종료");
