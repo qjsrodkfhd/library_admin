@@ -4,6 +4,7 @@ public class Genre {
 
 	private String GenreCode = "g";
 	private String GenreName;
+	private int genreMgm;
 
 	public Genre(String genreCode, String genreName) {
 
@@ -28,4 +29,12 @@ public class Genre {
 		GenreName = genreName;
 	}
 
+	public int getGenreMgm() {
+		return genreMgm;
+	}
+
+	public void setGenreMgm(int genreMgm) {
+		this.genreMgm = genreMgm;
+	}
+	
 }
