@@ -104,32 +104,16 @@ public class GenreDao {
 		String adminId = login.getLogin_Id();
 		
 		try{
-			sql = "select GenreMgmNumber from GenreMgm";
+			sql = "select GENREMGM.GENREMGMNUMBER, temp.genrecode, ADMIN.adminId FROM (select genrecode from genre group by GENRECODE) temp, GENREMGM, ADMIN WHERE GENREMGM.ADMINID = ADMIN.ADMINID and GENREMGM.GENRECODE = temp.genrecode";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				
-				genreMgm = rs.getInt("GenreMgmNumber");
-				
-			}
-			
-			sql = "select GenreCode from genre";
-			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				
-				genreCode = rs.getString("GenreCode");
-				
-			}
 			
 			while(rs.next()){
 				
 				GenreMgm genreMgmView = new GenreMgm();
-				genreMgmView.setGenreMgmNumber(genreMgm);
-				genreMgmView.setGenreCode(genreCode);
-				genreMgmView.setAdminId(adminId);
+				genreMgmView.setGenreMgmNumber(rs.getInt("GENREMGMNUMBER"));
+				genreMgmView.setGenreCode(rs.getString("genrecode"));
+				genreMgmView.setAdminId(rs.getString("adminId"));
 				genreMgmList.add(genreMgmView);
 			
 			}
