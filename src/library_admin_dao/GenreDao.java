@@ -132,7 +132,6 @@ public class GenreDao {
 
 
 		try{
-<<<<<<< HEAD
 			sql = "select * from Genremgm";
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
@@ -214,20 +213,7 @@ public class GenreDao {
 
 			if(result != 0){
 				success = true;
-=======
-			sql = "select GENREMGM.GENREMGMNUMBER, temp.genrecode, ADMIN.adminId FROM (select genrecode from genre group by GENRECODE) temp, GENREMGM, ADMIN WHERE GENREMGM.ADMINID = ADMIN.ADMINID and GENREMGM.GENRECODE = temp.genrecode";
-			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()){
-				
-				GenreMgm genreMgmView = new GenreMgm();
-				genreMgmView.setGenreMgmNumber(rs.getInt("GENREMGMNUMBER"));
-				genreMgmView.setGenreCode(rs.getString("genrecode"));
-				genreMgmView.setAdminId(rs.getString("adminId"));
-				genreMgmList.add(genreMgmView);
-			
->>>>>>> origin/master
+
 			}
 		}		catch(SQLException e){
 			e.printStackTrace();
@@ -237,56 +223,6 @@ public class GenreDao {
 
 	}
 
-	//장르 관리 리스트
-	//	public ArrayList<GenreMgm> genreMgmList(){
-	//		
-	//		ArrayList<GenreMgm> genreMgmList = new ArrayList<GenreMgm>();
-	//		PreparedStatement pstmt = null;
-	//		ResultSet rs = null;
-	//		String sql = null;
-	//		int genreMgm = 0;
-	//		String genreCode = null;
-	//		Login login = Controllers.getLoginControlles().requestLoginInfo();
-	//		String adminId = login.getLogin_Id();
-	//		
-	//		try{
-	//			sql = "select GenreMgmNumber from GenreMgm";
-	//			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-	//			rs = pstmt.executeQuery();
-	//			
-	//			if(rs.next()){
-	//				
-	//				genreMgm = rs.getInt("GenreMgmNumber");
-	//				
-	//			}
-	//			
-	//			sql = "select GenreCode from genre";
-	//			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-	//			rs = pstmt.executeQuery();
-	//			
-	//			if(rs.next()){
-	//				
-	//				genreCode = rs.getString("GenreCode");
-	//				
-	//			}
-	//			
-	//			while(rs.next()){
-	//				
-	//				GenreMgm genreMgmView = new GenreMgm();
-	//				genreMgmView.setGenreMgmNumber(genreMgm);
-	//				genreMgmView.setGenreCode(genreCode);
-	//				genreMgmView.setAdminId(adminId);
-	//				genreMgmList.add(genreMgmView);
-	//			
-	//			}
-	//			
-	//		} catch(SQLException e){
-	//			e.printStackTrace();
-	//		}
-	//		
-	//		
-	//		return genreMgmList;
-	//	}
 	//장르 리스트
 	//장르 수정
 
