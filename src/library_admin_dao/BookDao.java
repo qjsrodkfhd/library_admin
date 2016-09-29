@@ -16,11 +16,6 @@ public class BookDao {
 	//책 찾기
 	public Book searchBook(String searchBookName) {
 
-<<<<<<< HEAD
-		// boolean success = false;
-=======
-		//boolean success = false;
->>>>>>> refs/remotes/pcj9027/master
 		Book searchedBookName = null;
 
 		PreparedStatement pstmt = null;
