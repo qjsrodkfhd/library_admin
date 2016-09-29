@@ -132,6 +132,7 @@ public class GenreDao {
 
 
 		try{
+<<<<<<< HEAD
 			sql = "select * from Genremgm";
 			stmt = Controllers.getProgramController().getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
@@ -213,6 +214,20 @@ public class GenreDao {
 
 			if(result != 0){
 				success = true;
+=======
+			sql = "select GENREMGM.GENREMGMNUMBER, temp.genrecode, ADMIN.adminId FROM (select genrecode from genre group by GENRECODE) temp, GENREMGM, ADMIN WHERE GENREMGM.ADMINID = ADMIN.ADMINID and GENREMGM.GENRECODE = temp.genrecode";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				GenreMgm genreMgmView = new GenreMgm();
+				genreMgmView.setGenreMgmNumber(rs.getInt("GENREMGMNUMBER"));
+				genreMgmView.setGenreCode(rs.getString("genrecode"));
+				genreMgmView.setAdminId(rs.getString("adminId"));
+				genreMgmList.add(genreMgmView);
+			
+>>>>>>> origin/master
 			}
 		}		catch(SQLException e){
 			e.printStackTrace();
