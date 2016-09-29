@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 /library_admin_controller/
 /library_admin_dao/
 /library_admin_domain/
@@ -5,3 +8,17 @@
 /library_admin_repository/
 /library_admin_view/
 /library_repository/
+=======
+/library_admin_dao/
+>>>>>>> refs/remotes/pcj9027/master
+/library_admin_controller/
+/library_admin_dao/
+/library_admin_domain/
+/library_admin_main/
+/library_admin_repository/
+/library_admin_view/
+<<<<<<< HEAD
+/library_repository/
+=======
+>>>>>>> refs/remotes/pcj9027/master
+>>>>>>> refs/remotes/pcj9027/master

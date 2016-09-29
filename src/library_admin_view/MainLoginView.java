@@ -18,7 +18,9 @@ public class MainLoginView {
 
 		while (true) {
 
-			System.out.print("[1. 도서대출, 2. 도서반납, 3. 로그아웃 , 4. 관리자 탈퇴 , 5. 도서반납예정날짜 테스트, 6. 대출카드 관리, 7. 장르관리 , 8. 사용자관리 0. 프로그램 종료] : ");
+			System.out.print(
+					"[1. 도서대출, 2. 도서반납, 3. 로그아웃 , 4. 관리자 탈퇴 , 5. 도서반납예정날짜 테스트, 6. 대출카드 관리, 7. 장르관리 , 8. 사용자관리 9. 도서관리 0. 프로그램 종료] : ");
+
 			int selectedMenu = keyboard.nextInt();
 
 			switch (selectedMenu) {
@@ -43,6 +45,7 @@ public class MainLoginView {
 				break;
 			case 6:
 				System.out.println("대출카드");
+
 				Controllers.getLibCardController().requestLibMenu();
 				break;
 			case 7:
@@ -51,17 +54,19 @@ public class MainLoginView {
 				break;
 			case 8:
 				System.out.println("사용자관리");
-				
+				break;
+			case 9:
+				System.out.println("도서관리");
+				Controllers.getBookController().requestBookManegement();
+				break;
 			case 0:
 				System.out.println("프로그램 종료");
-				System.exit(0);
+				break;
 			default:
 				System.out.println("메뉴를 다시 선택해 주세요.");
 			}
 		}
 
 	}
-
-
 
 }
