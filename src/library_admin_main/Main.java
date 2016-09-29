@@ -9,7 +9,8 @@ public class Main {
 		
 		new Controllers();
 		LoginController loginController = Controllers.getLoginControlles();
-		loginController.requestMainLogin();
+		//loginController.requestMainLogin();
+		loginController.requestLogin();
 
 	}
 

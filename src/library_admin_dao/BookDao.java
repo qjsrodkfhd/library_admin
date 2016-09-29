@@ -13,10 +13,14 @@ import library_admin_domain.BookLoan;
 import library_repository.LoginRepository;
 
 public class BookDao {
-
+	//책 찾기
 	public Book searchBook(String searchBookName) {
 
+<<<<<<< HEAD
 		// boolean success = false;
+=======
+		//boolean success = false;
+>>>>>>> refs/remotes/pcj9027/master
 		Book searchedBookName = null;
 
 		PreparedStatement pstmt = null;
@@ -45,7 +49,7 @@ public class BookDao {
 
 		return searchedBookName;
 	}
-
+	//책 대출
 	public boolean LoanBook(BookLoan bookLoanInfo) {
 		int nextLoanNumber = 0;
 		Statement stmt = null;

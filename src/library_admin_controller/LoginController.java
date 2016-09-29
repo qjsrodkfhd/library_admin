@@ -24,12 +24,13 @@ public class LoginController {
 		boolean success = loginDao.login(login);
 		if(success){
 			System.out.println("로그인 성공");
+			this.requestMainLogin();
 		} else{
 			System.out.println("로그인 실패");;
+			this.requestLogin();
 		}
 		
-		//로그인 된 메인 메인페이지로 이동
-		requestMainLogin();
+		
 	}
 	
 	public Login requestLoginInfo()
@@ -51,8 +52,7 @@ public class LoginController {
 	public void requestLogOut(){
 		
 		loginDao.logOut();
-		
-		//주문 내역 삭제
+		this.requestLogin();
 		
 	}
 
@@ -63,4 +63,5 @@ public class LoginController {
 		mainLoginView.showMainPage();
 		
 	}
+
 }
