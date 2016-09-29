@@ -13,7 +13,7 @@ public class GenreMgmListView {
 		
 		for(int i = 0; i < genreMgm.size(); i++){
 			
-			System.out.println("\t");
+			System.out.print("\t");
 			System.out.print(genreMgm.get(i).getGenreMgmNumber() + "\t");
 			System.out.print(genreMgm.get(i).getGenreCode() + "\t");
 			System.out.println(genreMgm.get(i).getAdminId());

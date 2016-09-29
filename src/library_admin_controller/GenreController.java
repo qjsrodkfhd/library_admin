@@ -9,6 +9,7 @@ import library_admin_view.AlertView;
 import library_admin_view.GenreInsertView;
 import library_admin_view.GenreMainPage;
 import library_admin_view.GenreMgmListView;
+import library_admin_view.GenreUpdatetView;
 
 public class GenreController {
 
@@ -23,8 +24,10 @@ public class GenreController {
 	//장르 관리 페이지
 	public void requestGenreMgm(){
 
+		ArrayList<Genre> genres = new ArrayList<Genre>();
+		genres = daoGenre.selectAllGenre();
 		GenreMainPage genreMainPage = new GenreMainPage();
-		genreMainPage.genreMenu();
+		genreMainPage.genreMenu(genres);
 
 	}
 
@@ -51,8 +54,36 @@ public class GenreController {
 		ArrayList<GenreMgm> genreMgm = daoGenre.genreMgmList();
 		GenreMgmListView genreMgmListView = new GenreMgmListView();
 		genreMgmListView.genreMgmList(genreMgm);
+		requestGenreMgm();
 		
 	}
 	//장르 리스트
 	//장르 수정
+	public void requestUpdateGenre() {
+		GenreUpdatetView genreUpdatetView = new GenreUpdatetView();
+		Genre updateGenre = genreUpdatetView.getGenreInfo();
+		
+		boolean success = daoGenre.updateGenre(updateGenre);
+		
+		if(success)
+		{
+			System.out.println("장르코드 수정성공");
+			boolean success2 = daoGenre.updateGenreMgm(updateGenre);
+			if(success2)
+			{
+				System.out.println("장르관리추가성공");
+			}
+			else
+			{
+				System.out.println("장르관리추가실패");
+			}
+		}
+		else
+		{
+			System.out.println("장르코드 수정실패");
+		}
+		
+		requestGenreMgm();
+		
+	}
 }

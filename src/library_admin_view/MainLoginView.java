@@ -18,15 +18,7 @@ public class MainLoginView {
 
 		while (true) {
 
-			boolean success = Controllers.getLoginControlles().requestLoginCheck();
-
-			if(!success){
-				System.out.print("[1. 도서대출, 2. 도서반납, 3. 로그인, 4. 관리자 가입 , 5. 도서반납예정날짜 테스트, 6. 대출카드생성, 7. 장르관리 , 0. 프로그램 종료] : ");
-			}else{
-				System.out.print("[1. 도서대출, 2. 도서반납, 3. 로그아웃 , 4. 관리자 탈퇴 , 5. 도서반납예정날짜 테스트, 6. 대출카드생성, 7. 장르관리 , 0. 프로그램 종료] : ");
-			}
-
-
+			System.out.print("[1. 도서대출, 2. 도서반납, 3. 로그아웃 , 4. 관리자 탈퇴 , 5. 도서반납예정날짜 테스트, 6. 대출카드 관리, 7. 장르관리 , 8. 사용자관리 0. 프로그램 종료] : ");
 			int selectedMenu = keyboard.nextInt();
 
 			switch (selectedMenu) {
@@ -39,28 +31,27 @@ public class MainLoginView {
 				Controllers.getBookController().requestReturnBook();
 				break;
 			case 3:
-				if (!success) {
-					Controllers.getLoginControlles().requestLogin();
-				} else {
-					Controllers.getLoginControlles().requestLogOut();
-				}
+				Controllers.getLoginControlles().requestLogOut();
 				break;
 			case 4:
 				System.out.println("관리자 가입");
 				Controllers.getAdminController().requestRegister();
-				System.exit(0);
+				break;
 			case 5:
 				System.out.println("대출내역 + 반납예정날짜 출력");
 				Controllers.getBookController().requestPrintBookLoanList();
-				System.exit(0);
+				break;
 			case 6:
 				System.out.println("대출카드");
-				Controllers.getLibCardController().requestRegisterLibCard();
-				System.exit(0);
+				Controllers.getLibCardController().requestLibMenu();
+				break;
 			case 7:
 				System.out.println("장르관리");
 				Controllers.getGenreController().requestGenreMgm();
-				System.exit(0);
+				break;
+			case 8:
+				System.out.println("사용자관리");
+				
 			case 0:
 				System.out.println("프로그램 종료");
 				System.exit(0);
@@ -70,5 +61,7 @@ public class MainLoginView {
 		}
 
 	}
+
+
 
 }
