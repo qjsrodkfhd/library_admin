@@ -73,7 +73,7 @@ public class BookController {
 		boolean bookList = bookDao.BookAdd(book);
 		
 		boolean success	= bookDao.insertBookmgm(book);
-
+		
 	}
 
 	public void requestBookList() {
@@ -85,5 +85,15 @@ public class BookController {
 		System.out.println("도서 수정 ");
 
 	}
+	
+	//미구현
+//	public Book requestRandom(){
+//		
+//		Book book = null;
+//		book = bookDao.generateinsert(book);
+//		
+//		return book;
+//		
+//	}
 
 }
