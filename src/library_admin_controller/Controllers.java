@@ -8,6 +8,7 @@ public class Controllers {
 	private static AdminController adminController;
 	private static LibCardController libCardController;
 	private static GenreController genreController;
+	private static SearchHopeBookController searchHopeBookController;
 
 	public Controllers() {
 		programController = new ProgramController();
@@ -17,6 +18,7 @@ public class Controllers {
 		adminController = new AdminController();
 		libCardController = new LibCardController();
 		genreController = new GenreController();
+		searchHopeBookController = new SearchHopeBookController();
 
 	}
 
@@ -48,5 +50,8 @@ public class Controllers {
 		return genreController;
 	}
 
+	public static SearchHopeBookController getSearchHopeBookController() {
+		return searchHopeBookController;
+	}
 	
 }

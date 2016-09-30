@@ -10,7 +10,6 @@ import java.util.Random;
 import library_admin_controller.Controllers;
 import library_admin_domain.Book;
 import library_admin_domain.BookLoan;
-import library_repository.LoginRepository;
 
 public class BookDao {
 	//책 찾기
@@ -63,6 +62,7 @@ public class BookDao {
 			while (rs.next()) {
 				loanCount = loanCount + 1;
 			}
+			
 			rs.close();
 			pstmt.close();
 
@@ -70,6 +70,7 @@ public class BookDao {
 				sql = "select max(LoanNumber) + 1 as maxLoanNumber from BookLoan";
 				stmt = Controllers.getProgramController().getConnection().createStatement();
 				rs = stmt.executeQuery(sql);
+				
 
 				if (rs.next()) {
 					nextLoanNumber = rs.getInt("maxLoanNumber");
