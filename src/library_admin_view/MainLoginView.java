@@ -19,7 +19,7 @@ public class MainLoginView {
 		while (true) {
 
 			System.out.print(
-					"[1. 도서대출, 2. 도서반납, 3. 로그아웃 , 4. 관리자 탈퇴 , 5. 도서반납예정날짜 테스트, 6. 대출카드 관리, 7. 장르관리 , 8. 사용자관리, 9. 도서관리 0. 프로그램 종료] : ");
+					"[1. 도서대출, 2. 도서반납, 3. 로그아웃 , 4. 관리자 탈퇴 , 5. 희망도서 관리, 6. 대출카드 관리, 7. 장르관리 , 8. 사용자관리, 9. 도서관리 0. 프로그램 종료] : ");
 
 			int selectedMenu = keyboard.nextInt();
 
@@ -40,8 +40,8 @@ public class MainLoginView {
 				Controllers.getAdminController().requestRegister();
 				break;
 			case 5:
-				System.out.println("대출내역 + 반납예정날짜 출력");
-				Controllers.getBookController().requestPrintBookLoanList();
+				System.out.println("희망도서 관리");
+				Controllers.getSearchHopeBookController().requestSearchHopeBookMenu();
 				break;
 			case 6:
 				System.out.println("대출카드");
