@@ -85,7 +85,6 @@ public class BookController {
 		System.out.println("도서 수정 ");
 
 	}
-	
 	//미구현
 //	public Book requestRandom(){
 //		
