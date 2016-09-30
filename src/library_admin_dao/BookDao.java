@@ -10,7 +10,6 @@ import java.util.Random;
 import library_admin_controller.Controllers;
 import library_admin_domain.Book;
 import library_admin_domain.BookLoan;
-import library_repository.LoginRepository;
 
 public class BookDao {
 	//책 찾기

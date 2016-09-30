@@ -223,8 +223,4 @@ public class GenreDao {
 
 	}
 
-	//장르 리스트
-	//장르 수정
-
-
 }
