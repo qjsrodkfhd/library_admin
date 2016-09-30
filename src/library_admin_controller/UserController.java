@@ -91,7 +91,7 @@ public class UserController {
 		if(success)
 		{
 			AlertView alertView = new AlertView();
-			alertView.alert("주소수정성공");
+			alertView.alert("전화번호 수정성공");
 		}
 		
 	}
