@@ -63,6 +63,7 @@ public class BookDao {
 			while (rs.next()) {
 				loanCount = loanCount + 1;
 			}
+			
 			rs.close();
 			pstmt.close();
 
@@ -70,6 +71,7 @@ public class BookDao {
 				sql = "select max(LoanNumber) + 1 as maxLoanNumber from BookLoan";
 				stmt = Controllers.getProgramController().getConnection().createStatement();
 				rs = stmt.executeQuery(sql);
+				
 
 				if (rs.next()) {
 					nextLoanNumber = rs.getInt("maxLoanNumber");

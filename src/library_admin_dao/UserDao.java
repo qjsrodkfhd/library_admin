@@ -114,4 +114,168 @@ public class UserDao {
 		return user;
 
 	}
+
+	public ArrayList<User> selectAllUser() {
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<User> users = new ArrayList<User>();
+
+		try {
+
+			
+			String sql = "select * from userinfo";
+			stmt = Controllers.getProgramController().getConnection().createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				User user = new User();
+				user.setUserBarcode(rs.getInt("userbarcode"));
+				user.setUserId(rs.getString("userid"));
+				user.setUserPw(rs.getString("userpw"));
+				user.setUserName(rs.getString("username"));
+				user.setUserAddr(rs.getString("useraddr"));
+				user.setUserTel(rs.getString("usertel"));
+				user.setUserGender(rs.getString("usergender"));
+				user.setUserRegDate(rs.getDate("userregdate"));
+				users.add(user);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return users;
+	}
+
+	public User selectOneUser(int getBarcode) {
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		User user = new User();
+		try {
+
+			String sql = "select * from userinfo where userbarcode = ?";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, getBarcode);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				user.setUserName(rs.getString("userbarcode"));
+				user.setUserId(rs.getString("userid"));
+				user.setUserPw(rs.getString("userpw"));
+				user.setUserName(rs.getString("username"));
+				user.setUserAddr(rs.getString("useraddr"));
+				user.setUserTel(rs.getString("usertel"));
+				user.setUserGender(rs.getString("usergender"));
+				user.setUserRegDate(rs.getDate("userregdate"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return user;
+	}
+
+	public boolean updateUserName(int getBarcode, String updateName) {
+		boolean success = false;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "update userInfo set userName =? where userBarcode =? ";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+
+			pstmt.setString(1, updateName);
+			pstmt.setInt(2, getBarcode);
+
+			int result = pstmt.executeUpdate();
+			
+			if(result != 0)
+			{
+				success = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
+
+	public boolean updateUserAddr(int getBarcode, String updateAddr) {
+		boolean success = false;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "update userInfo set userAddr =? where userBarcode =? ";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+
+			pstmt.setString(1, updateAddr);
+			pstmt.setInt(2, getBarcode);
+
+			int result = pstmt.executeUpdate();
+			
+			if(result != 0)
+			{
+				success = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
+
+	public boolean updateUserTel(int getBarcode, String updateTel) {
+		boolean success = false;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "update userInfo set userTel =? where userBarcode =? ";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+
+			pstmt.setString(1, updateTel);
+			pstmt.setInt(2, getBarcode);
+
+			int result = pstmt.executeUpdate();
+			
+			if(result != 0)
+			{
+				success = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
 }
