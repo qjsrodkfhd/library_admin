@@ -9,6 +9,7 @@ import java.util.Random;
 
 import library_admin_controller.Controllers;
 import library_admin_domain.Book;
+import library_admin_domain.BookDetail;
 import library_admin_domain.BookLoan;
 
 public class BookDao {
@@ -62,6 +63,7 @@ public class BookDao {
 			while (rs.next()) {
 				loanCount = loanCount + 1;
 			}
+			
 			rs.close();
 			pstmt.close();
 
@@ -69,6 +71,7 @@ public class BookDao {
 				sql = "select max(LoanNumber) + 1 as maxLoanNumber from BookLoan";
 				stmt = Controllers.getProgramController().getConnection().createStatement();
 				rs = stmt.executeQuery(sql);
+				
 
 				if (rs.next()) {
 					nextLoanNumber = rs.getInt("maxLoanNumber");
@@ -397,4 +400,125 @@ public class BookDao {
 		return success;
 
 	}
+	public BookDetail searchDetailBook(int barcodeNumber) {
+		BookDetail bookInfo = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = "select bookname,bookauthor,bookpublisher,genrename,bookloantf, bookloandate from book,genre,bookloan where book.bookbarcode = bookloan.bookbarcode and book.genrecode = genre.genrecode and book.bookbarcode = ?";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			pstmt.setInt(1, barcodeNumber);
+			rs = pstmt.executeQuery();
+			int lineCount = 0;
+			while (rs.next()) {
+
+				lineCount = lineCount + 1;
+
+			}
+
+			if (lineCount > 0) {
+				sql = "select bookname,bookauthor,bookpublisher,genrename,bookloantf, bookloandate from book,genre,bookloan where book.bookbarcode = bookloan.bookbarcode and book.genrecode = genre.genrecode and book.bookbarcode = ?";
+				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+				pstmt.setInt(1, barcodeNumber);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					bookInfo = new BookDetail();
+					bookInfo.setBookName(rs.getString("bookname"));
+					bookInfo.setBookAuthor(rs.getString("bookauthor"));
+					bookInfo.setBookPublisher(rs.getString("bookpublisher"));
+					bookInfo.setGenreName(rs.getString("genrename"));
+					bookInfo.setBookLoanTF(rs.getString("bookloantf"));
+					bookInfo.setBookLoanDate(rs.getDate("bookloandate"));
+				}
+
+			} else {
+				// 쿼리 날린 결과가 없다.
+				sql = "select bookname,bookauthor,bookpublisher,genrename from book, genre where book.genrecode = genre.genrecode and book.bookbarcode = ? ";
+				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+				pstmt.setInt(1, barcodeNumber);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					bookInfo = new BookDetail();
+					bookInfo.setBookName(rs.getString("bookname"));
+					bookInfo.setBookAuthor(rs.getString("bookauthor"));
+					bookInfo.setBookPublisher(rs.getString("bookpublisher"));
+					bookInfo.setGenreName(rs.getString("genrename"));
+					bookInfo.setBookLoanTF("t");
+				}
+
+			}
+
+		} catch (
+
+		SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return bookInfo;
+
+	}
+	public ArrayList<Book> bookList() {
+
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<Book> bookList = new ArrayList<Book>();
+		try {
+
+			String sql = "select * from book";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				Book book = new Book();
+				book.setBookBarcode(rs.getInt("bookBarcode"));
+				book.setBookName(rs.getString("bookName"));
+				book.setBookAuthor(rs.getString("bookAuthor"));
+				book.setBookPublisher(rs.getString("bookPublisher"));
+				book.setGenreCode(rs.getString("genreCode"));
+				bookList.add(book);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+		return bookList;
+	}
+
+
 }

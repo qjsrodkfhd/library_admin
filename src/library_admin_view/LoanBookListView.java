@@ -19,11 +19,13 @@ public class LoanBookListView {
 			System.out.print(bookLoanList.get(i).getBookLoanTF() + "\t");
 			System.out.print(bookLoanList.get(i).getAdminId() + "\t");
 			System.out.print(bookLoanList.get(i).getBookLoanDate() + "\t");
+			
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(bookLoanList.get(i).getBookLoanDate());
 			cal.add(Calendar.DATE, 14);
 			String loanDay = format.format(cal.getTime());
+			
 			System.out.println(loanDay);
 		}
 		

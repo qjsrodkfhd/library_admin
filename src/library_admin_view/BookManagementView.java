@@ -15,7 +15,7 @@ public class BookManagementView {
 	public void getBookManageChoose() {
 		System.out.println("[ * 도서관리 페이지 * ]");
 		
-		System.out.println("[1. 도서추가, 2.도서조회, 3.도서수정, 4. 메인 메뉴]");
+		System.out.println("[1. 도서추가, 2.도서조회, 0. 메인 메뉴]");
 		int selectMenu = keyboard.nextInt();
 		
 		switch(selectMenu){
@@ -29,12 +29,7 @@ public class BookManagementView {
 			Controllers.getBookController().requestBookList();
 			break;
 			
-		case 3:
-			
-			Controllers.getBookController().requestBookUpdate();
-			break;
-			
-		case 4:
+		case 0:
 			
 			Controllers.getLoginControlles().requestMainLogin();
 			break;

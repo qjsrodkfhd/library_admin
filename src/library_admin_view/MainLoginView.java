@@ -45,7 +45,6 @@ public class MainLoginView {
 				break;
 			case 6:
 				System.out.println("대출카드");
-
 				Controllers.getLibCardController().requestLibMenu();
 				break;
 			case 7:
@@ -54,6 +53,7 @@ public class MainLoginView {
 				break;
 			case 8:
 				System.out.println("사용자관리");
+				Controllers.getUserController().requestUser();
 				break;
 			case 9:
 				System.out.println("도서관리");
