@@ -4,12 +4,16 @@ import java.util.ArrayList;
 
 import library_admin_dao.BookDao;
 import library_admin_domain.Book;
+import library_admin_domain.BookDetail;
 import library_admin_domain.BookLoan;
 import library_admin_view.AlertView;
 import library_admin_view.BookAddView;
+import library_admin_view.BookDetailSearchView;
 import library_admin_view.BookLoanView;
 import library_admin_view.BookManagementView;
 import library_admin_view.BookReturnView;
+import library_admin_view.BookSelectOneView;
+import library_admin_view.BooksearchView;
 import library_admin_view.LoanBookListView;
 
 public class BookController {
@@ -69,22 +73,33 @@ public class BookController {
 		BookAddView bookAddView = new BookAddView();
 		Book addBook = bookAddView.addBook();
 		Book book = bookDao.generateinsert(addBook); // 바코드까지 완성된 book객체
-		
+
 		boolean bookList = bookDao.BookAdd(book);
-		
-		boolean success	= bookDao.insertBookmgm(book);
-		
+
+		boolean success = bookDao.insertBookmgm(book);
+
 	}
 
 	public void requestBookList() {
 		System.out.println("도서 조회 ");
+		ArrayList<Book> bookList = bookDao.bookList();
+		BooksearchView bookListView = new BooksearchView();
+		bookListView.searchedBookList(bookList);
 
 	}
 
-	public void requestBookUpdate() {
-		System.out.println("도서 수정 ");
+	public void requestBookDetailSeacrch() {
+
+		BookDetailSearchView bookDetailSearchView = new BookDetailSearchView();
+		int barcodeNumber = bookDetailSearchView.bookDetailInfo();
+
+		BookDetail bookInfo = bookDao.searchDetailBook(barcodeNumber);
+
+		BookSelectOneView bookSelectOneView = new BookSelectOneView();
+		bookSelectOneView.outputOneBook(bookInfo);
 
 	}
+<<<<<<< HEAD
 	//미구현
 //	public Book requestRandom(){
 //		
@@ -94,5 +109,17 @@ public class BookController {
 //		return book;
 //		
 //	}
+=======
+
+	// 미구현
+	// public Book requestRandom(){
+	//
+	// Book book = null;
+	// book = bookDao.generateinsert(book);
+	//
+	// return book;
+	//
+	// }
+>>>>>>> refs/remotes/pcj9027/master
 
 }
