@@ -99,6 +99,7 @@ public class BookController {
 		bookSelectOneView.outputOneBook(bookInfo);
 
 	}
+<<<<<<< HEAD
 
 	// 미구현
 	// public Book requestRandom(){
@@ -110,5 +111,16 @@ public class BookController {
 	//
 	// }
 
+=======
+	//미구현
+//	public Book requestRandom(){
+//		
+//		Book book = null;
+//		book = bookDao.generateinsert(book);
+//		
+//		return book;
+//		
+//	}
+>>>>>>> origin/master
 
 }
